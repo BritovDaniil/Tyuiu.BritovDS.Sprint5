@@ -1,32 +1,31 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
 
-namespace Tyuiu.BritovDS.Sprint5.Task7.V2.Lib
+namespace Tyuiu.BritovDS.Sprint5.Task6.V3.Lib
 {
-    public class DataService : ISprint5Task7V2
+    public class DataService : ISprint5Task6V3
     {
-        public string LoadDataAndSave(string path)
+        public int LoadFromDataFile(string path)
         {
-            string resPath = Path.Combine(Path.GetTempPath(), "OutPutFileTask7V2.txt");
-
-            FileInfo fileInfo = new FileInfo(resPath);
-            bool fileExist = fileInfo.Exists;
-
-            if (fileExist) { File.Delete(resPath); }
-
             string text = File.ReadAllText(path);
+
+            string alphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+
+            int count = 0;
 
             foreach (char c in text)
             {
-                if (char.IsDigit(c))
+                if (alphabet.Contains(c))
                 {
-                    text = text.Replace(c, '#');
+                    count++;
                 }
             }
 
-            File.AppendAllText(resPath, text);
+            if (count == 0)
+            {
+                throw new InvalidOperationException("Не найдено латинских букв.");
+            }
 
-            return resPath;
-
+            return count;
         }
     }
 }
