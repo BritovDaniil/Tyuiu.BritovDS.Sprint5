@@ -1,14 +1,28 @@
-﻿using Tyuiu.BritovDS.Sprint5.Task7.V2.Lib;
+﻿using Tyuiu.BritovDS.Sprint5.Task6.V3.Lib;
 
-namespace Tyuiu.BritovDS.Sprint5.Task7.V2.Test
+namespace Tyuiu.BritovDS.Sprint5.Task6.V3.Test
 {
     [TestClass]
     public class DataServiceTest
     {
         [TestMethod]
+        public void CheckValid()
+        {
+            DataService ds = new DataService();
+
+            string path = @"C:\DataSprint5\InPutDataFileTask6V3.txt";
+
+            var res = ds.LoadFromDataFile(path);
+
+            var wait = 21;
+
+            Assert.AreEqual(wait, res);
+        }
+
+        [TestMethod]
         public void CheckFile()
         {
-            string path = @"C:\Users\kosya\AppData\Local\Temp\OutPutFileTask7V2.txt";
+            string path = @"C:\DataSprint5\InPutDataFileTask6V3.txt";
 
             FileInfo file = new FileInfo(path);
             bool fileExists = file.Exists;
